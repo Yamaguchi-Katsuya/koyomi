@@ -65,7 +65,14 @@ export const handleDateChange = async (
   setHolidays: (holidays: Holiday[]) => void,
   setErrorMessage: (message: string) => void
 ) => {
-  if (year === '' || isNaN(year) || month === '' || isNaN(month) || day === '' || isNaN(day)) {
+  if (
+    year === '' ||
+    isNaN(year) ||
+    month === '' ||
+    isNaN(month) ||
+    day === '' ||
+    isNaN(day)
+  ) {
     setErrorMessage('');
     setAge('');
     setEto('');

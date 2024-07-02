@@ -9,8 +9,14 @@ function App() {
     <div className="App">
       <Helmet>
         <title>KOYOMI</title>
-        <meta name="description" content="暦に関する様々なことができるサービス" />
-        <meta name="keywords" content="年齢計算, 西暦, 和暦, 変換, 干支, 今日は何の日" />
+        <meta
+          name="description"
+          content="暦に関する様々なことができるサービス"
+        />
+        <meta
+          name="keywords"
+          content="年齢計算, 西暦, 和暦, 変換, 干支, 今日は何の日"
+        />
       </Helmet>
       <SeirekiWarekiConverter />
       <AgeCalculator />

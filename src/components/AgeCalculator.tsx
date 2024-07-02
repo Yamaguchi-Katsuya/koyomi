@@ -13,7 +13,15 @@ const AgeCalculator: React.FC = () => {
   const [holidays, setHolidays] = useState<Holiday[]>([]);
 
   useEffect(() => {
-    handleDateChange(birthYear, birthMonth, birthDay, setAge, setEto, setHolidays, setErrorMessage);
+    handleDateChange(
+      birthYear,
+      birthMonth,
+      birthDay,
+      setAge,
+      setEto,
+      setHolidays,
+      setErrorMessage
+    );
   }, [birthYear, birthMonth, birthDay]);
 
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {

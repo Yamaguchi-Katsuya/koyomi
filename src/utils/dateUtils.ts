@@ -1,3 +1,6 @@
+import { validateMonth, validateDay } from '../utils/validation';
+import { Holiday } from '../types/holiday';
+import { fetchHolidays } from './holidayUtils';
 import { Era } from '../types/era';
 import { Eto, etoList } from '../types/eto';
 
@@ -51,4 +54,40 @@ export const calculateAge = (birthDate: Date): number => {
 
 export const getEto = (year: number): Eto => {
   return etoList[(year + 8) % 12];
+};
+
+export const handleDateChange = async (
+  year: number | '',
+  month: number | '',
+  day: number | '',
+  setAge: (age: number | '') => void,
+  setEto: (eto: Eto | '') => void,
+  setHolidays: (holidays: Holiday[]) => void,
+  setErrorMessage: (message: string) => void
+) => {
+  if (year === '' || isNaN(year) || month === '' || isNaN(month) || day === '' || isNaN(day)) {
+    setErrorMessage('');
+    setAge('');
+    setEto('');
+    setHolidays([]);
+    return;
+  }
+
+  const validatedMonth = validateMonth(month);
+  const validatedDay = validateDay(year, validatedMonth, day);
+
+  if (validatedMonth === '' || validatedDay === '') {
+    setErrorMessage('月または日に無効な値が入力されています。');
+    setAge('');
+    setEto('');
+    setHolidays([]);
+    return;
+  }
+
+  setErrorMessage('');
+  const birthDate = new Date(year, validatedMonth - 1, validatedDay);
+  setAge(calculateAge(birthDate));
+  setEto(getEto(year));
+  const holidays = await fetchHolidays(validatedMonth, validatedDay);
+  setHolidays(holidays);
 };

@@ -60,7 +60,7 @@ const SeirekiWarekiConverter: React.FC = () => {
             <Circle bgColor={L_GRAY}>
                 <Heading textColor={BLACK} text='YEAR' />
                 <label
-                    htmlFor='year'
+                    htmlFor='seireki'
                     className='font-kiwi'
                 >
                     西暦から和暦へ
@@ -68,6 +68,7 @@ const SeirekiWarekiConverter: React.FC = () => {
                 <div className='flex items-center gap-3 w-3/5 font-kiwi'>
                     <input
                         type="number"
+                        id='seireki'
                         value={seireki}
                         onChange={handleSeirekiChange}
                         className='rounded-md w-2/3'
@@ -78,13 +79,13 @@ const SeirekiWarekiConverter: React.FC = () => {
                     和暦 : <span>{wareki}</span>
                 </p>
                 <label
-                    htmlFor='year'
+                    htmlFor='wareki'
                     className='font-kiwi'
                 >
                     和暦から西暦へ
                 </label>
                 <div className='grid grid-cols-7 mx-auto gap-2 w-3/5 font-kiwi'>
-                    <select className='rounded-md col-span-3 bg-white' value={selectedEra} onChange={handleEraChange}>
+                    <select id='wareki' className='rounded-md col-span-3 bg-white' value={selectedEra} onChange={handleEraChange}>
                         {eras.map((era) => (
                             <option key={era} value={era}>
                                 {era}
@@ -93,6 +94,7 @@ const SeirekiWarekiConverter: React.FC = () => {
                     </select>
                     <input
                         type="number"
+                        name='warekiYear'
                         value={warekiYear}
                         onChange={handleWarekiYearChange}
                         className='rounded-md col-span-3'

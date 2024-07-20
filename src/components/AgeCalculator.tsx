@@ -67,6 +67,7 @@ const AgeCalculator: React.FC = () => {
                     <div className="grid grid-cols-11 w-3/4 mb-2 md:mb-0 text-white font-kiwi">
                         <input
                             type="number"
+                            name='year'
                             value={inputBirthYear}
                             onChange={handleInputYearChange}
                             className="border border-gray-400 rounded-md col-span-4 text-black"
@@ -74,6 +75,7 @@ const AgeCalculator: React.FC = () => {
                         <span className='col-span-1'>年</span>
                         <input
                             type="number"
+                            name='month'
                             value={inputBirthMonth}
                             onChange={handleInputMonthChange}
                             max={12}
@@ -82,6 +84,7 @@ const AgeCalculator: React.FC = () => {
                         <span className='col-span-1'>月</span>
                         <input
                             type="number"
+                            name='day'
                             value={inputBirthDay}
                             onChange={handleInputDayChange}
                             max={31}

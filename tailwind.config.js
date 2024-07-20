@@ -1,11 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  safelist: [
+    { pattern: /^border-/ },
+    { pattern: /^bg-/ },
+    { pattern: /^text-/ },
+  ],
   theme: {
     extend: {
       colors: {
-        'd-gray': '#999999',
         'l-gray': '#CCCCCC',
+        'd-gray': '#999999',
       },
       fontFamily: {
         kiwi: ['Kiwi Maru', 'sans-serif'],

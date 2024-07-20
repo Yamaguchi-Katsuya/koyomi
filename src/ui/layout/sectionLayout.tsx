@@ -12,7 +12,7 @@ class SectionLayout extends Component<CircleProps> {
         const bgColorClass = `bg-${bgColor}`;
 
         return (
-            <section className={`${bgColorClass} p-4 md:p-8 md:h-screen md:flex md:items-center md:justify-center md:flex-col w-full`} >
+            <section className={`${bgColorClass} p-4 md:p-8 md:h-screen md:flex md:items-center md:justify-center md:flex-col w-full overflow-x-hidden`} >
                 {children}
             </section>
         );

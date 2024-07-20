@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import { Color } from '../../types/color';
+import { Color } from '../types/color';
 
 interface SectionProps {
     bgColor: Color;

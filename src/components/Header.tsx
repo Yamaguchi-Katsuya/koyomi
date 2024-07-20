@@ -1,6 +1,6 @@
 import React from 'react';
-import Circle from '../ui/circle';
-import Heading from '../ui/heading';
+import Circle from '../ui/Circle';
+import Heading from '../ui/Heading';
 import { D_GRAY, WHITE } from '../types/color';
 
 const Header: React.FC = () => {

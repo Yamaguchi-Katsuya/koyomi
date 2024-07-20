@@ -1,11 +1,11 @@
 import React, { Component, ChangeEvent } from 'react';
-import Circle from '../ui/circle';
 import { handleDateChange } from '../utils/dateUtils';
 import { Eto } from '../types/eto';
 import { Holiday } from '../types/holiday';
-import Heading from '../ui/heading';
+import Heading from '../ui/Heading';
 import { D_GRAY, L_GRAY, WHITE } from '../types/color';
-import SectionLayout from '../ui/layout/sectionLayout';
+import SectionLayout from '../layout/SectionLayout';
+import Circle from '../ui/Circle';
 
 interface State {
     inputBirthYear: number | '';

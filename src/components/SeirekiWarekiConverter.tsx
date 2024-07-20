@@ -1,12 +1,12 @@
 import React, { Component, ChangeEvent } from 'react';
-import Circle from '../ui/circle';
+import Circle from '../ui/Circle';
 import { Era, eras } from '../types/era';
 import {
     convertSeirekiToWareki,
     convertWarekiToSeireki,
 } from '../utils/dateUtils';
 import { validateWarekiYear } from '../utils/validation';
-import Heading from '../ui/heading';
+import Heading from '../ui/Heading';
 import { BLACK, L_GRAY } from '../types/color';
 
 interface State {

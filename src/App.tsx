@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Header from './components/Header';
-import SectionLayout from './ui/layout/sectionLayout';
+import SectionLayout from './layout/SectionLayout';
 import SeirekiWarekiConverter from './components/SeirekiWarekiConverter';
 import AgeCalculator from './components/AgeCalculator';
 import { D_GRAY, L_GRAY } from './types/color';

@@ -60,16 +60,16 @@ const AgeCalculator: React.FC = () => {
             <SectionLayout bgColor={WHITE}>
                 <Circle bgColor={D_GRAY}>
                     <Heading textColor={WHITE} text='DATE' />
-                    <p className='text-white'>
+                    <p className='text-white font-kiwi'>
                         今日は何の日？<br />
                         干支・星座・年齢を調べてみよう！
                     </p>
-                    <div className="grid grid-cols-11 w-3/4 mb-2 md:mb-0">
+                    <div className="grid grid-cols-11 w-3/4 mb-2 md:mb-0 text-white font-kiwi">
                         <input
                             type="number"
                             value={inputBirthYear}
                             onChange={handleInputYearChange}
-                            className="border border-gray-400 rounded-md col-span-4"
+                            className="border border-gray-400 rounded-md col-span-4 text-black"
                         />
                         <span className='col-span-1'>年</span>
                         <input
@@ -77,7 +77,7 @@ const AgeCalculator: React.FC = () => {
                             value={inputBirthMonth}
                             onChange={handleInputMonthChange}
                             max={12}
-                            className="border border-gray-400 rounded-md col-span-2"
+                            className="border border-gray-400 rounded-md col-span-2 text-black"
                         />
                         <span className='col-span-1'>月</span>
                         <input
@@ -85,7 +85,7 @@ const AgeCalculator: React.FC = () => {
                             value={inputBirthDay}
                             onChange={handleInputDayChange}
                             max={31}
-                            className="border border-gray-400 rounded-md col-span-2"
+                            className="border border-gray-400 rounded-md col-span-2 text-black"
                         />
                         <span className='col-span-1'>日</span>
                     </div>
@@ -100,7 +100,7 @@ const AgeCalculator: React.FC = () => {
             </SectionLayout>
             {isResultReady && (
                 <SectionLayout bgColor={WHITE}>
-                    <Circle bgColor={L_GRAY} className="mt-4 md:mt-8">
+                    <Circle bgColor={L_GRAY} className="mt-4 md:mt-8 font-kiwi">
                         <p className='md:text-4xl font-bold'>{birthYear ? `${birthYear}年` : ''}{birthMonth ? `${birthMonth}月` : ''}{birthDay ? `${birthDay}日` : ''}</p>
                         <p className='md:text-4xl font-bold'>{eto}　{age ? `${age}歳` : ''}</p>
                         <div className='w-5/6 md:text-4xl flex flex-col items-center gap-3 md:gap-6'>

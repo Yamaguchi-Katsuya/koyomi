@@ -17,10 +17,10 @@ module.exports = {
         mono: ['JetBrains Mono', 'monospace'],
       },
       width: {
-        'md-circle': '600px',
+        'md-circle': '1000px',
       },
       height: {
-        'md-circle': '600px',
+        'md-circle': '1000px',
       },
     },
   },

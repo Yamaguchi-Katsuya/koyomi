@@ -7,7 +7,7 @@ import {
 } from '../utils/dateUtils';
 import { validateWarekiYear } from '../utils/validation';
 import Heading from '../ui/heading';
-import { L_GRAY, WHITE } from '../types/color';
+import { BLACK, L_GRAY } from '../types/color';
 
 const SeirekiWarekiConverter: React.FC = () => {
     const [seireki, setSeireki] = useState<number | ''>('');
@@ -57,8 +57,8 @@ const SeirekiWarekiConverter: React.FC = () => {
     };
     return (
         <>
-            <Heading textColor={WHITE} text='YEAR' />
             <Circle bgColor={L_GRAY}>
+                <Heading textColor={BLACK} text='YEAR' />
                 <label
                     htmlFor='year'
                     className='font-kiwi'
@@ -70,7 +70,7 @@ const SeirekiWarekiConverter: React.FC = () => {
                         type="number"
                         value={seireki}
                         onChange={handleSeirekiChange}
-                        className='w-2/3'
+                        className='rounded-md w-2/3'
                     />
                     <span>年</span>
                 </div>
@@ -84,7 +84,7 @@ const SeirekiWarekiConverter: React.FC = () => {
                     和暦から西暦へ
                 </label>
                 <div className='grid grid-cols-7 mx-auto gap-2 w-3/5'>
-                    <select className='col-span-3' value={selectedEra} onChange={handleEraChange}>
+                    <select className='rounded-md col-span-3' value={selectedEra} onChange={handleEraChange}>
                         {eras.map((era) => (
                             <option key={era} value={era}>
                                 {era}
@@ -95,7 +95,7 @@ const SeirekiWarekiConverter: React.FC = () => {
                         type="number"
                         value={warekiYear}
                         onChange={handleWarekiYearChange}
-                        className='col-span-3'
+                        className='rounded-md col-span-3'
                     />
                     <span className='col-span-1'>年</span>
                 </div>

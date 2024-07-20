@@ -12,7 +12,7 @@ class Heading extends Component<HeadingProps> {
         const textColorClass = `text-${textColor}`
 
         return (
-            <h2 className={`${textColorClass} text-2xl md:text-6xl font-bold  font-mono px-4 pt-4 text-right`}>{text}</h2>
+            <h2 className={`${textColorClass} text-2xl md:text-7xl font-mono px-4 pt-4 text-right`}>{text}</h2>
         );
     }
 }

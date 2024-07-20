@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from './components/Header';
 import SectionLayout from './ui/layout/sectionLayout';
@@ -7,31 +7,6 @@ import AgeCalculator from './components/AgeCalculator';
 import { D_GRAY, L_GRAY, WHITE } from './types/color';
 
 const App: React.FC = () => {
-  const [currentSection, setCurrentSection] = useState<number>(0);
-
-  const handleScroll = () => {
-    const sections = document.querySelectorAll('section');
-    const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-    let currentSection = 0;
-    sections.forEach((section, index) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        currentSection = index;
-      }
-    });
-
-    setCurrentSection(currentSection);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <div className="App">
       <Helmet>
@@ -51,9 +26,7 @@ const App: React.FC = () => {
       <SectionLayout bgColor={D_GRAY}>
         <SeirekiWarekiConverter />
       </SectionLayout>
-      <SectionLayout bgColor={WHITE}>
-        <AgeCalculator />
-      </SectionLayout>
+      <AgeCalculator />
     </div>
   );
 };

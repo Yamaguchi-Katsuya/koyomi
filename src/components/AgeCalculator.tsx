@@ -4,7 +4,8 @@ import { handleDateChange } from '../utils/dateUtils';
 import { Eto } from '../types/eto';
 import { Holiday } from '../types/holiday';
 import Heading from '../ui/heading';
-import { D_GRAY, L_GRAY } from '../types/color';
+import { D_GRAY, L_GRAY, WHITE } from '../types/color';
+import SectionLayout from '../ui/layout/sectionLayout';
 
 const AgeCalculator: React.FC = () => {
     const [inputBirthYear, setInputBirthYear] = useState<number | ''>('');
@@ -18,7 +19,6 @@ const AgeCalculator: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [holidays, setHolidays] = useState<Holiday[]>([]);
     const [isResultReady, setIsResultReady] = useState<boolean>(false);
-    const [isMoreClicked, setIsMoreClicked] = useState<boolean>(false);
 
     const handleInputYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputBirthYear(parseInt(e.target.value, 10));
@@ -46,107 +46,71 @@ const AgeCalculator: React.FC = () => {
             setErrorMessage
         );
         setIsResultReady(true);
-        setIsMoreClicked(false);
+
+        setTimeout(() => {
+            window.scrollBy({
+                top: window.innerHeight,
+                behavior: 'smooth',
+            });
+        }, 100);
     };
 
     return (
         <>
-            <Heading textColor={D_GRAY} text='DATE' />
-            <Circle bgColor={D_GRAY}>
-                <p className='text-white leading-7 md:leading-10'>
-                    今日はなんの日？<br />
-                    干支・星座・年齢を調べてみよう！
-                </p>
-                <div className="flex space-x-2 items-center">
-                    <div className="flex items-center">
+            <SectionLayout bgColor={WHITE}>
+                <Circle bgColor={D_GRAY}>
+                    <Heading textColor={WHITE} text='DATE' />
+                    <p className='text-white'>
+                        今日はなんの日？<br />
+                        干支・星座・年齢を調べてみよう！
+                    </p>
+                    <div className="grid grid-cols-11 w-3/4">
                         <input
                             type="number"
                             value={inputBirthYear}
                             onChange={handleInputYearChange}
-                            className="border border-gray-400 p-2 rounded-lg w-16"
+                            className="border border-gray-400 rounded-md col-span-4"
                         />
-                        <span className="ml-1">年</span>
-                    </div>
-                    <div className="flex items-center">
+                        <span className='col-span-1'>年</span>
                         <input
                             type="number"
                             value={inputBirthMonth}
                             onChange={handleInputMonthChange}
                             max={12}
-                            className="border border-gray-400 p-2 rounded-lg w-16"
+                            className="border border-gray-400 rounded-md col-span-2"
                         />
-                        <span className="ml-1">月</span>
-                    </div>
-                    <div className="flex items-center">
+                        <span className='col-span-1'>月</span>
                         <input
                             type="number"
                             value={inputBirthDay}
                             onChange={handleInputDayChange}
                             max={31}
-                            className="border border-gray-400 p-2 rounded-lg w-16"
+                            className="border border-gray-400 rounded-md col-span-2"
                         />
-                        <span className="ml-1">日</span>
+                        <span className='col-span-1'>日</span>
                     </div>
-                </div>
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                <button
-                    className='bg-l-gray text-white font-kiwi rounded-full py-2 px-4'
-                    onClick={handleGoClick}
-                >
-                    GO
-                </button>
-            </Circle>
-            {isResultReady && (
-                <Circle bgColor={L_GRAY}>
-                    <p>
-                        <span>{birthYear ? `${birthYear}年` : ''}{birthMonth ? `${birthMonth}月` : ''}{birthDay ? `${birthDay}日` : ''}</span><br />
-                        <span>{eto}　{age ? `${age}歳` : ''}</span>
-                    </p>
-                    <p>
-                        <span>{holidays[0]?.name}</span><br />
-                        <span>
-                            {holidays[0]?.description}
-                        </span>
-                    </p>
+                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <button
-                        className='bg-black text-white font-kiwi rounded-full px-4 py-2'
-                        onClick={() => setIsMoreClicked(true)}
+                        className='bg-l-gray text-white font-kiwi rounded-full py-2 px-4 md:px-12'
+                        onClick={handleGoClick}
                     >
-                        MORE
+                        GO
                     </button>
                 </Circle>
-            )}
-            {isMoreClicked && (
-                <>
-                    <Circle bgColor={L_GRAY}>
-                        <p>
-                            <span>{holidays[1]?.name}</span><br />
-                            <span>
-                                {holidays[1]?.description}
-                            </span>
-                        </p>
-                        <p>
-                            <span>{holidays[2]?.name}</span><br />
-                            <span>
-                                {holidays[2]?.description}
-                            </span>
-                        </p>
+            </SectionLayout>
+            {isResultReady && (
+                <SectionLayout bgColor={WHITE}>
+                    <Circle bgColor={L_GRAY} className="mt-4 md:mt-8">
+                        <p className='md:text-4xl font-bold'>{birthYear ? `${birthYear}年` : ''}{birthMonth ? `${birthMonth}月` : ''}{birthDay ? `${birthDay}日` : ''}</p>
+                        <p className='md:text-4xl font-bold'>{eto}　{age ? `${age}歳` : ''}</p>
+                        <div className='w-5/6 md:text-4xl flex flex-col items-center gap-3 md:gap-6'>
+                            <p className='font-bold'>{holidays[0]?.name}</p>
+                            <p>
+                                {holidays[0]?.description}
+                            </p>
+                        </div>
                     </Circle>
-                    <Circle bgColor={L_GRAY}>
-                        <p>
-                            <span>{holidays[3]?.name}</span><br />
-                            <span>
-                                {holidays[3]?.description}
-                            </span>
-                        </p>
-                        <p>
-                            <span>{holidays[4]?.name}</span><br />
-                            <span>
-                                {holidays[4]?.description}
-                            </span>
-                        </p>
-                    </Circle>
-                </>
+                </SectionLayout>
             )}
         </>
     );

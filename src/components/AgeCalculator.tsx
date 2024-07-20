@@ -64,7 +64,7 @@ const AgeCalculator: React.FC = () => {
                         今日は何の日？<br />
                         干支・星座・年齢を調べてみよう！
                     </p>
-                    <div className="grid grid-cols-11 w-3/4">
+                    <div className="grid grid-cols-11 w-3/4 mb-2 md:mb-0">
                         <input
                             type="number"
                             value={inputBirthYear}
@@ -91,7 +91,7 @@ const AgeCalculator: React.FC = () => {
                     </div>
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <button
-                        className='bg-l-gray text-white font-kiwi rounded-full py-2 px-4 md:px-12'
+                        className='bg-l-gray text-white font-kiwi rounded-full py-1 px-6 md:py-2 md:px-12'
                         onClick={handleGoClick}
                     >
                         GO

@@ -84,7 +84,7 @@ const SeirekiWarekiConverter: React.FC = () => {
                     和暦から西暦へ
                 </label>
                 <div className='grid grid-cols-7 mx-auto gap-2 w-3/5'>
-                    <select className='rounded-md col-span-3' value={selectedEra} onChange={handleEraChange}>
+                    <select className='rounded-md col-span-3 bg-white' value={selectedEra} onChange={handleEraChange}>
                         {eras.map((era) => (
                             <option key={era} value={era}>
                                 {era}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Circle from '../ui/circle';
-import { LIGHT } from '../types/bgType';
 import { Era, eras } from '../types/era';
 import {
     convertSeirekiToWareki,
@@ -8,6 +7,7 @@ import {
 } from '../utils/dateUtils';
 import { validateWarekiYear } from '../utils/validation';
 import Heading from '../ui/heading';
+import { L_GRAY, WHITE } from '../types/color';
 
 const SeirekiWarekiConverter: React.FC = () => {
     const [seireki, setSeireki] = useState<number | ''>('');
@@ -57,8 +57,8 @@ const SeirekiWarekiConverter: React.FC = () => {
     };
     return (
         <>
-            <Heading bgType={LIGHT} text='YEAR' />
-            <Circle bgType={LIGHT}>
+            <Heading textColor={WHITE} text='YEAR' />
+            <Circle bgColor={L_GRAY}>
                 <label
                     htmlFor='year'
                     className='font-kiwi'

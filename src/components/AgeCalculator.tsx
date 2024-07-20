@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Circle from '../ui/circle';
-import { DARK, LIGHT } from '../types/bgType';
 import { handleDateChange } from '../utils/dateUtils';
 import { Eto } from '../types/eto';
 import { Holiday } from '../types/holiday';
 import Heading from '../ui/heading';
+import { D_GRAY, L_GRAY } from '../types/color';
 
 const AgeCalculator: React.FC = () => {
     const [inputBirthYear, setInputBirthYear] = useState<number | ''>('');
@@ -51,8 +51,8 @@ const AgeCalculator: React.FC = () => {
 
     return (
         <>
-            <Heading bgType={DARK} text='DATE' />
-            <Circle bgType={DARK}>
+            <Heading textColor={D_GRAY} text='DATE' />
+            <Circle bgColor={D_GRAY}>
                 <p className='text-white leading-7 md:leading-10'>
                     今日はなんの日？<br />
                     干支・星座・年齢を調べてみよう！
@@ -97,7 +97,7 @@ const AgeCalculator: React.FC = () => {
                 </button>
             </Circle>
             {isResultReady && (
-                <Circle bgType={LIGHT}>
+                <Circle bgColor={L_GRAY}>
                     <p>
                         <span>{birthYear ? `${birthYear}年` : ''}{birthMonth ? `${birthMonth}月` : ''}{birthDay ? `${birthDay}日` : ''}</span><br />
                         <span>{eto}　{age ? `${age}歳` : ''}</span>
@@ -118,7 +118,7 @@ const AgeCalculator: React.FC = () => {
             )}
             {isMoreClicked && (
                 <>
-                    <Circle bgType={LIGHT}>
+                    <Circle bgColor={L_GRAY}>
                         <p>
                             <span>{holidays[1]?.name}</span><br />
                             <span>
@@ -132,7 +132,7 @@ const AgeCalculator: React.FC = () => {
                             </span>
                         </p>
                     </Circle>
-                    <Circle bgType={LIGHT}>
+                    <Circle bgColor={L_GRAY}>
                         <p>
                             <span>{holidays[3]?.name}</span><br />
                             <span>

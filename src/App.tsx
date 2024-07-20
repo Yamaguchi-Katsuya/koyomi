@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from './components/Header';
-import { DARK, LIGHT } from './types/bgType';
 import SectionLayout from './ui/layout/sectionLayout';
 import SeirekiWarekiConverter from './components/SeirekiWarekiConverter';
 import AgeCalculator from './components/AgeCalculator';
+import { D_GRAY, L_GRAY, WHITE } from './types/color';
 
 const App: React.FC = () => {
   const [currentSection, setCurrentSection] = useState<number>(0);
@@ -45,13 +45,13 @@ const App: React.FC = () => {
           content="年齢計算, 西暦, 和暦, 変換, 干支, 今日は何の日"
         />
       </Helmet>
-      <SectionLayout bgType={LIGHT}>
+      <SectionLayout bgColor={L_GRAY}>
         <Header />
       </SectionLayout>
-      <SectionLayout bgType={DARK}>
+      <SectionLayout bgColor={D_GRAY}>
         <SeirekiWarekiConverter />
       </SectionLayout>
-      <SectionLayout bgType={LIGHT}>
+      <SectionLayout bgColor={WHITE}>
         <AgeCalculator />
       </SectionLayout>
     </div>

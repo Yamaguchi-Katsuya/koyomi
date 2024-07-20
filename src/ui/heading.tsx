@@ -1,18 +1,18 @@
 import { Component, ReactNode } from 'react';
-import { BgType, LIGHT } from '../types/bgType';
+import { Color } from '../types/color';
 
 interface HeadingProps {
-    bgType: BgType;
+    textColor: Color;
     text: string;
 }
 
 class Heading extends Component<HeadingProps> {
     render() {
-        const { bgType, text } = this.props;
-        const bgClass = bgType === LIGHT ? 'text-l-gray' : 'text-d-gray';
+        const { textColor, text } = this.props;
+        const textColorClass = `text-${textColor}`
 
         return (
-            <h2 className={`${bgClass} text-2xl md:text-6xl font-bold  font-mono px-4 pt-4 text-right`}>{text}</h2>
+            <h2 className={`${textColorClass} text-2xl md:text-6xl font-bold  font-mono px-4 pt-4 text-right`}>{text}</h2>
         );
     }
 }

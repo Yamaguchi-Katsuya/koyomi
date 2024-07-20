@@ -1,18 +1,18 @@
 import { Component, ReactNode } from 'react';
-import { BgType, LIGHT } from '../../types/bgType';
+import { Color } from '../../types/color';
 
 interface CircleProps {
-    bgType: BgType;
+    bgColor: Color;
     children: ReactNode;
 }
 
 class SectionLayout extends Component<CircleProps> {
     render() {
-        const { bgType, children } = this.props;
-        const bgClass = bgType === LIGHT ? 'bg-l-gray' : 'bg-d-gray';
+        const { bgColor, children } = this.props;
+        const bgColorClass = `bg-${bgColor}`;
 
         return (
-            <section className={`${bgClass} p-4 md:p-8 md:h-screen md:flex md:items-center md:justify-center md:flex-col`} >
+            <section className={`${bgColorClass} p-4 md:p-8 md:h-screen md:flex md:items-center md:justify-center md:flex-col w-full`} >
                 {children}
             </section>
         );

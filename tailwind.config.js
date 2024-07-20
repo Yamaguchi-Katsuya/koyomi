@@ -11,7 +11,13 @@ module.exports = {
         kiwi: ['Kiwi Maru', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
+      width: {
+        'md-circle': '600px',
+      },
+      height: {
+        'md-circle': '600px',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 };

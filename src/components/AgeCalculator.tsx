@@ -61,7 +61,7 @@ const AgeCalculator: React.FC = () => {
                 <Circle bgColor={D_GRAY}>
                     <Heading textColor={WHITE} text='DATE' />
                     <p className='text-white'>
-                        今日はなんの日？<br />
+                        今日は何の日？<br />
                         干支・星座・年齢を調べてみよう！
                     </p>
                     <div className="grid grid-cols-11 w-3/4">

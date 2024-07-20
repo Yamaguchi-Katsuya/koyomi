@@ -91,7 +91,7 @@ const AgeCalculator: React.FC = () => {
                     </div>
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <button
-                        className='bg-l-gray text-white font-kiwi rounded-full py-1 px-6 md:py-2 md:px-12'
+                        className='bg-l-gray text-white font-mono rounded-full py-1 px-6 md:py-2 md:px-12'
                         onClick={handleGoClick}
                     >
                         GO

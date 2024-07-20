@@ -5,8 +5,12 @@ import SectionLayout from './ui/layout/sectionLayout';
 import SeirekiWarekiConverter from './components/SeirekiWarekiConverter';
 import AgeCalculator from './components/AgeCalculator';
 import { D_GRAY, L_GRAY, WHITE } from './types/color';
+import ReactGA from "react-ga4";
 
 const App: React.FC = () => {
+  ReactGA.initialize("G-FDW2ZFWFYG");
+  ReactGA.send("pageview");
+
   return (
     <div className="App">
       <Helmet>
@@ -19,7 +23,6 @@ const App: React.FC = () => {
           name="keywords"
           content="年齢計算, 西暦, 和暦, 変換, 干支, 今日は何の日"
         />
-        <meta name="google-site-verification" content="M_9xCpXlDzN6_KIGiDz5kIjEwYxVcO452FtZMeLY0Aw" />
       </Helmet>
       <SectionLayout bgColor={L_GRAY}>
         <Header />

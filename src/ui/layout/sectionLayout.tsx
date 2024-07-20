@@ -1,12 +1,12 @@
 import { Component, ReactNode } from 'react';
 import { Color } from '../../types/color';
 
-interface CircleProps {
+interface SectionProps {
     bgColor: Color;
     children: ReactNode;
 }
 
-class SectionLayout extends Component<CircleProps> {
+class SectionLayout extends Component<SectionProps> {
     render() {
         const { bgColor, children } = this.props;
         const bgColorClass = `bg-${bgColor}`;

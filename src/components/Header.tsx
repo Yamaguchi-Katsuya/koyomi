@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Circle from '../ui/circle';
 import Heading from '../ui/heading';
 import { D_GRAY, WHITE } from '../types/color';
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
                     今日は何の日？などなど<br />
                     簡単入力ですぐ分かるサービスです！
                 </p>
-            </Circle >
+            </Circle>
         </>
     );
 };

@@ -5,7 +5,7 @@ import SectionLayout from './layout/SectionLayout';
 import SeirekiWarekiConverter from './components/SeirekiWarekiConverter';
 import AgeCalculator from './components/AgeCalculator';
 import { D_GRAY, L_GRAY } from './types/color';
-import ReactGA from "react-ga4";
+import ReactGA from 'react-ga4';
 
 class App extends Component {
   componentDidMount() {
@@ -13,9 +13,12 @@ class App extends Component {
     ReactGA.initialize(trackingId, {
       gaOptions: {
         debug_mode: import.meta.env.DEV,
-      }
+      },
     });
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname + window.location.search });
+    ReactGA.send({
+      hitType: 'pageview',
+      page: window.location.pathname + window.location.search,
+    });
   }
 
   render() {
@@ -32,7 +35,10 @@ class App extends Component {
               name="keywords"
               content="年齢計算, 西暦, 和暦, 変換, 干支, 今日は何の日"
             />
-            <meta name="google-site-verification" content="M_9xCpXlDzN6_KIGiDz5kIjEwYxVcO452FtZMeLY0Aw" />
+            <meta
+              name="google-site-verification"
+              content="M_9xCpXlDzN6_KIGiDz5kIjEwYxVcO452FtZMeLY0Aw"
+            />
           </Helmet>
           <SectionLayout bgColor={L_GRAY}>
             <Header />

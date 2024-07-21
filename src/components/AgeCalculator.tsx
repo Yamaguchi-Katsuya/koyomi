@@ -1,76 +1,56 @@
-import React, { Component, ChangeEvent } from 'react';
-import { handleDateChange } from '../utils/dateUtils';
+import React, { useState } from 'react';
+import { calculateAge, getEto } from '../utils/dateUtils';
 import { Eto } from '../types/eto';
 import { Holiday } from '../types/holiday';
 import Heading from '../ui/Heading';
 import { D_GRAY, L_GRAY, WHITE } from '../types/color';
 import SectionLayout from '../layout/SectionLayout';
 import Circle from '../ui/Circle';
+import { validateDay, validateMonth } from '../utils/validation';
+import { fetchHolidays } from '../utils/holidayUtils';
 
-interface State {
-  inputBirthYear: number | '';
-  inputBirthMonth: number | '';
-  inputBirthDay: number | '';
-  birthYear: number | '';
-  birthMonth: number | '';
-  birthDay: number | '';
-  age: number | '';
-  eto: Eto | '';
-  errorMessage: string;
-  holidays: Holiday[];
-  isResultReady: boolean;
-}
+function AgeCalculator(): JSX.Element {
+  const [year, setYear] = useState<number | ''>('');
+  const [month, setMonth] = useState<number | ''>('');
+  const [day, setDay] = useState<number | ''>('');
+  const [age, setAge] = useState<number | ''>('');
+  const [eto, setEto] = useState<Eto | ''>('');
+  const [errorMessage, setErrorMessage] = useState<string | ''>('');
+  const [holidays, setHolidays] = useState<Holiday[]>([]);
+  const [isResultReady, setIsResultReady] = useState<boolean>(false);
 
-class AgeCalculator extends Component<object, State> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      inputBirthYear: '',
-      inputBirthMonth: '',
-      inputBirthDay: '',
-      birthYear: '',
-      birthMonth: '',
-      birthDay: '',
-      age: '',
-      eto: '',
-      errorMessage: '',
-      holidays: [],
-      isResultReady: false,
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const { inputYear, inputMonth, inputDay } = Object.fromEntries(
+      Array.from(new FormData(form).entries()).map(([key, value]) => [key, Number(value)])
+    ) as {
+      inputYear: number;
+      inputMonth: number;
+      inputDay: number;
     };
-  }
 
-  handleInputYearChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ inputBirthYear: parseInt(e.target.value, 10) });
-  };
+    if (isNaN(inputYear) || isNaN(inputMonth) || isNaN(inputDay)) {
+      setErrorMessage('年月日には数字を入力してください。');
+      return;
+    }
 
-  handleInputMonthChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ inputBirthMonth: parseInt(e.target.value, 10) });
-  };
+    if (!validateMonth(inputMonth) || !validateDay(inputYear, inputMonth, inputDay)) {
+      setErrorMessage('月または日に無効な値が入力されています。');
+      return;
+    }
 
-  handleInputDayChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ inputBirthDay: parseInt(e.target.value, 10) });
-  };
+    setErrorMessage('');
 
-  handleGoClick = () => {
-    const { inputBirthYear, inputBirthMonth, inputBirthDay } = this.state;
-
-    this.setState({
-      birthYear: inputBirthYear,
-      birthMonth: inputBirthMonth,
-      birthDay: inputBirthDay,
-    });
-
-    handleDateChange(
-      inputBirthYear,
-      inputBirthMonth,
-      inputBirthDay,
-      (age) => this.setState({ age }),
-      (eto) => this.setState({ eto }),
-      (holidays) => this.setState({ holidays }),
-      (errorMessage) => this.setState({ errorMessage })
-    );
-
-    this.setState({ isResultReady: true });
+    setYear(inputYear);
+    setMonth(inputMonth);
+    setDay(inputDay);
+    const birthDate = new Date(inputYear, inputMonth - 1, inputDay);
+    setAge(calculateAge(birthDate));
+    setEto(getEto(inputYear));
+    const holidays = await fetchHolidays(inputMonth, inputDay);
+    setHolidays(holidays);
+    setIsResultReady(true);
 
     setTimeout(() => {
       window.scrollBy({
@@ -80,89 +60,69 @@ class AgeCalculator extends Component<object, State> {
     }, 100);
   };
 
-  render() {
-    const {
-      inputBirthYear,
-      inputBirthMonth,
-      inputBirthDay,
-      birthYear,
-      birthMonth,
-      birthDay,
-      age,
-      eto,
-      errorMessage,
-      holidays,
-      isResultReady,
-    } = this.state;
-
-    return (
-      <>
-        <SectionLayout bgColor={WHITE}>
-          <Circle bgColor={D_GRAY}>
-            <Heading textColor={WHITE} text="DATE" />
-            <p className="text-white font-kiwi">
-              今日は何の日？
-              <br />
-              干支・星座・年齢を調べてみよう！
-            </p>
-            <div className="grid grid-cols-11 w-3/4 mb-2 md:mb-0 text-white font-kiwi">
+  return (
+    <>
+      <SectionLayout bgColor={WHITE}>
+        <Circle bgColor={D_GRAY}>
+          <Heading textColor={WHITE} text="DATE" />
+          <p className="text-white font-kiwi">
+            今日は何の日？
+            <br />
+            干支・星座・年齢を調べてみよう！
+          </p>
+          <form className='w-3/4 mb-2 md:mb-0 flex flex-col gap-1 md:gap-9' onSubmit={handleSubmit}>
+            <div className="grid grid-cols-11 text-white font-kiwi">
               <input
                 type="number"
-                name="year"
-                value={inputBirthYear}
-                onChange={this.handleInputYearChange}
-                className="border border-gray-400 rounded-md col-span-4 text-black"
+                name="inputYear"
+                className="border border-gray-400 rounded-md col-span-4 text-black text-center"
               />
               <span className="col-span-1">年</span>
               <input
                 type="number"
-                name="month"
-                value={inputBirthMonth}
-                onChange={this.handleInputMonthChange}
+                name="inputMonth"
                 max={12}
-                className="border border-gray-400 rounded-md col-span-2 text-black"
+                className="border border-gray-400 rounded-md col-span-2 text-black text-center"
               />
               <span className="col-span-1">月</span>
               <input
                 type="number"
-                name="day"
-                value={inputBirthDay}
-                onChange={this.handleInputDayChange}
+                name="inputDay"
                 max={31}
-                className="border border-gray-400 rounded-md col-span-2 text-black"
+                className="border border-gray-400 rounded-md col-span-2 text-black text-center"
               />
               <span className="col-span-1">日</span>
             </div>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <button
               className="bg-l-gray text-white font-mono rounded-full py-1 px-6 md:py-2 md:px-12"
-              onClick={this.handleGoClick}
+              type='submit'
             >
               GO
             </button>
+          </form>
+        </Circle>
+      </SectionLayout>
+      {isResultReady && (
+        <SectionLayout bgColor={WHITE}>
+          <Circle bgColor={L_GRAY} className="mt-4 md:mt-8 font-kiwi">
+            <p className="md:text-4xl font-bold">
+              {year ? `${year}年` : ''}
+              {month ? `${month}月` : ''}
+              {day ? `${day}日` : ''}
+            </p>
+            <p className="md:text-4xl font-bold">
+              {eto} {age ? `${age}歳` : ''}
+            </p>
+            <div className="w-5/6 md:text-4xl flex flex-col items-center md:gap-6">
+              <p className="font-bold">{holidays[0]?.name}</p>
+              <p>{holidays[0]?.description}</p>
+            </div>
           </Circle>
         </SectionLayout>
-        {isResultReady && (
-          <SectionLayout bgColor={WHITE}>
-            <Circle bgColor={L_GRAY} className="mt-4 md:mt-8 font-kiwi">
-              <p className="md:text-4xl font-bold">
-                {birthYear ? `${birthYear}年` : ''}
-                {birthMonth ? `${birthMonth}月` : ''}
-                {birthDay ? `${birthDay}日` : ''}
-              </p>
-              <p className="md:text-4xl font-bold">
-                {eto} {age ? `${age}歳` : ''}
-              </p>
-              <div className="w-5/6 md:text-4xl flex flex-col items-center md:gap-6">
-                <p className="font-bold">{holidays[0]?.name}</p>
-                <p>{holidays[0]?.description}</p>
-              </div>
-            </Circle>
-          </SectionLayout>
-        )}
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }
 
 export default AgeCalculator;

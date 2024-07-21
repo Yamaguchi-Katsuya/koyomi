@@ -22,30 +22,30 @@ export const validateWarekiYear = (
   }
 };
 
-export const validateMonth = (month: number | ''): number | '' => {
-  if (month === '' || isNaN(month) || month < 1 || month > 12) {
-    return '';
+export const validateMonth = (month: number): boolean => {
+  if (month < 1 || month > 12) {
+    return false;
   }
-  return month;
+  return true;
 };
 
 export const validateDay = (
   year: number,
-  month: number | '',
-  day: number | ''
-): number | '' => {
-  if (day === '' || isNaN(day) || day < 1) {
-    return '';
+  month: number,
+  day: number
+): boolean => {
+  if (day < 1) {
+    return false;
   }
 
-  if (month === '' || isNaN(month) || month < 1 || month > 12) {
-    return '';
+  if (month < 1 || month > 12) {
+    return false;
   }
 
-  const daysInMonth = new Date(year, month, 0).getDate(); // month is 1-based, 0 returns the last day of the previous month
+  const daysInMonth = new Date(year, month, 0).getDate();
   if (day > daysInMonth) {
-    return '';
+    return false;
   }
 
-  return day;
+  return true;
 };

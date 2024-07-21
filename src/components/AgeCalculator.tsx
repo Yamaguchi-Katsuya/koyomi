@@ -153,7 +153,7 @@ class AgeCalculator extends Component<object, State> {
               <p className="md:text-4xl font-bold">
                 {eto} {age ? `${age}歳` : ''}
               </p>
-              <div className="w-5/6 md:text-4xl flex flex-col items-center gap-3 md:gap-6">
+              <div className="w-5/6 md:text-4xl flex flex-col items-center md:gap-6">
                 <p className="font-bold">{holidays[0]?.name}</p>
                 <p>{holidays[0]?.description}</p>
               </div>

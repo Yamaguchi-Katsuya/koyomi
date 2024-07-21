@@ -18,8 +18,8 @@ interface State {
   errorMessage: string;
 }
 
-class SeirekiWarekiConverter extends Component<{}, State> {
-  constructor(props: {}) {
+class SeirekiWarekiConverter extends Component<object, State> {
+  constructor(props: object) {
     super(props);
     this.state = {
       seireki: '',

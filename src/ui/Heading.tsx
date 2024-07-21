@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import { Color } from '../types/color';
 
 interface HeadingProps {

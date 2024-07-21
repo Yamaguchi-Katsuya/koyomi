@@ -21,8 +21,8 @@ interface State {
   isResultReady: boolean;
 }
 
-class AgeCalculator extends Component<{}, State> {
-  constructor(props: {}) {
+class AgeCalculator extends Component<object, State> {
+  constructor(props: object) {
     super(props);
     this.state = {
       inputBirthYear: '',
@@ -151,7 +151,7 @@ class AgeCalculator extends Component<{}, State> {
                 {birthDay ? `${birthDay}日` : ''}
               </p>
               <p className="md:text-4xl font-bold">
-                {eto}　{age ? `${age}歳` : ''}
+                {eto} {age ? `${age}歳` : ''}
               </p>
               <div className="w-5/6 md:text-4xl flex flex-col items-center gap-3 md:gap-6">
                 <p className="font-bold">{holidays[0]?.name}</p>

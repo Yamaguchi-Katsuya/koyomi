@@ -92,7 +92,7 @@ class SeirekiWarekiConverter extends Component<object, State> {
               id="seireki"
               value={seireki}
               onChange={this.handleSeirekiChange}
-              className="rounded-md w-2/3"
+              className="rounded-md w-2/3 text-center"
             />
             <span>年</span>
           </div>
@@ -105,7 +105,7 @@ class SeirekiWarekiConverter extends Component<object, State> {
           <div className="grid grid-cols-7 mx-auto gap-2 w-3/5 font-kiwi">
             <select
               id="wareki"
-              className="rounded-md col-span-3 bg-white"
+              className="rounded-md col-span-3 bg-white text-center"
               value={selectedEra}
               onChange={this.handleEraChange}
             >
@@ -120,7 +120,7 @@ class SeirekiWarekiConverter extends Component<object, State> {
               name="warekiYear"
               value={warekiYear}
               onChange={this.handleWarekiYearChange}
-              className="rounded-md col-span-3"
+              className="rounded-md col-span-3 text-center"
             />
             <span className="col-span-1">年</span>
           </div>

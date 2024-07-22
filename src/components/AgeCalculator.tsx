@@ -23,7 +23,10 @@ function AgeCalculator(): JSX.Element {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const { inputYear, inputMonth, inputDay } = Object.fromEntries(
-      Array.from(new FormData(form).entries()).map(([key, value]) => [key, Number(value)])
+      Array.from(new FormData(form).entries()).map(([key, value]) => [
+        key,
+        Number(value),
+      ])
     ) as {
       inputYear: number;
       inputMonth: number;
@@ -35,7 +38,10 @@ function AgeCalculator(): JSX.Element {
       return;
     }
 
-    if (!validateMonth(inputMonth) || !validateDay(inputYear, inputMonth, inputDay)) {
+    if (
+      !validateMonth(inputMonth) ||
+      !validateDay(inputYear, inputMonth, inputDay)
+    ) {
       setErrorMessage('月または日に無効な値が入力されています。');
       return;
     }
@@ -70,7 +76,10 @@ function AgeCalculator(): JSX.Element {
             <br />
             干支・星座・年齢を調べてみよう！
           </p>
-          <form className='w-3/4 mb-2 md:mb-0 flex flex-col gap-1 md:gap-9' onSubmit={handleSubmit}>
+          <form
+            className="w-3/4 mb-2 md:mb-0 flex flex-col gap-1 md:gap-9"
+            onSubmit={handleSubmit}
+          >
             <div className="grid grid-cols-11 text-white font-kiwi">
               <input
                 type="number"
@@ -96,7 +105,7 @@ function AgeCalculator(): JSX.Element {
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <button
               className="bg-l-gray text-white font-mono rounded-full py-1 px-6 md:py-2 md:px-12"
-              type='submit'
+              type="submit"
             >
               GO
             </button>

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 if (process.env.NODE_ENV === 'production') {
-  console.log = () => { };
+  console.log = () => {};
 }
 
 const root = ReactDOM.createRoot(

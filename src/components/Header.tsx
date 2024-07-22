@@ -3,7 +3,7 @@ import Circle from '../ui/Circle';
 import Heading from '../ui/Heading';
 import { D_GRAY, WHITE } from '../types/color';
 
-const Header: React.FC = () => {
+function Header(): JSX.Element {
   return (
     <>
       <Circle bgColor={D_GRAY}>
@@ -18,6 +18,6 @@ const Header: React.FC = () => {
       </Circle>
     </>
   );
-};
+}
 
 export default Header;

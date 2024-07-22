@@ -17,7 +17,7 @@ export const convertSeirekiToWareki = (year: number): string => {
   }
 };
 
-export const convertWarekiToSeireki = (era: Era, year: number): number | '' => {
+export const convertWarekiToSeireki = (era: Era, year: number): number => {
   switch (era) {
     case '令和':
       return 2018 + year;
@@ -29,8 +29,6 @@ export const convertWarekiToSeireki = (era: Era, year: number): number | '' => {
       return 1911 + year;
     case '明治':
       return 1867 + year;
-    default:
-      return '';
   }
 };
 

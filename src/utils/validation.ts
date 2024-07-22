@@ -2,24 +2,27 @@ import { Era, eraRanges } from '../types/era';
 
 export const validateWarekiYear = (
   era: Era,
-  year: number | ''
+  year: number | undefined
 ): { valid: boolean; message: string } => {
-  if (year === '') {
-    return { valid: true, message: '' };
+  if (year === undefined) {
+    return { valid: false, message: '' };
   }
 
-  if (
-    !isNaN(year) &&
-    year >= eraRanges[era].start &&
-    year <= eraRanges[era].end
-  ) {
-    return { valid: true, message: '' };
-  } else {
+  if (year <= 0) {
+    return {
+      valid: false,
+      message: '元号の年には1以上の数値を入力してください',
+    };
+  }
+
+  if (year > eraRanges[era].end) {
     return {
       valid: false,
       message: `${era}は${eraRanges[era].start}年 ~ ${eraRanges[era].end}年までです`,
     };
   }
+
+  return { valid: true, message: '' };
 };
 
 export const validateMonth = (month: number): boolean => {

@@ -89,7 +89,6 @@ function SeirekiWarekiConverter(): JSX.Element {
                 {era}
               </option>
             ))}
-            <option value="test">テスト</option>
           </select>
           <input
             type="number"
